@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>School Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="formback">
+        <div class="header">
+  <header>
+    <h1>School Registration</h1>
+    <p>Enroll Now for the Upcoming Academic Year!</p>
+    <button onclick="history.back()" style="border: none;position:absolute; background: none; left: 30px;top: 30px;">
+      <img src="btn.png" alt="Back" width="40" height="40" />
+      </button>
+  </header>
+</div>
+  <main>
+    <section class="form-section">
+      <form action="#" method="post" class="registration-form">
+        <h2>Register Here</h2>
+
+        <div class="form-group">
+          <label for="fullname">Student Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone"> 📱Parent/Gardiun Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="level">SELECT SCHOOL LEVEL</label>
+          <select id="level" name="level" onchange="showRequirements()" required>
+            <option value="">-- Select --</option>
+            <option value="nursery">Nursery</option>
+            <option value="primary">Primary</option>
+            <option value="olevel">O'LEVEL</option>
+            <option value="tvet">TVET - Vocational & Technical</option>
+          </select>
+          <div id="requirements"></div>
+          </div>
+           <!-- Submit Button -->
+           <div class="form-group">
+            <button type="submit">Submit Registration</button>
+          </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer1">
+    <p>&copy; 2025 Our School. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+  document.getElementById("registrationForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // prevent form from submitting the traditional way
+
+  // Collect form data
+  const parentName = document.getElementById("parentName").value;
+  const childName = document.getElementById("childName").value;
+  const gradeLevel = document.getElementById("gradeLevel").value;
+
+  // Simple validation
+  if (!parentName || !childName || !gradeLevel) {
+    document.getElementById("message").textContent = "Please fill out all required fields.";
+    return;
+  }
+
+  // Show success message
+  document.getElementById("message").textContent = "Registration submitted successfully!";
+  document.getElementById("registrationForm").reset(); // Clear the form
+});
+
+   const upload = document.getElementById('upload');
+    const photo = document.getElementById('photo');
+    const scannerContainer = document.getElementById('scannerContainer');
+
+    upload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          photo.src = evt.target.result;
+
+          // Show scanner container when image is loaded
+
+          scannerContainer.style.display = 'block'; 
+        };
+        reader.readAsDataURL(file);
+      } else {
+
+         // Hide scanner container if no file is uploaded
+
+        scannerContainer.style.display = 'none'; 
+      }
+    });
+
+/*---------requirement section-----------*/
+
+  function showRequirements() {
+      const level = document.getElementById('level').value;
+      const container = document.getElementById('requirements');
+      container.innerHTML = '';
+
+      if (level === 'nursery') {
+        container.innerHTML = `
+          <label>select class</label>
+          <select>
+          <optgroup label="Nursery">
+                <option value="Baby Class">Baby Class</option>
+                <option value="Middle Class">Middle Class</option>
+                <option value="Top Class">Top Class</option>
+              </optgroup>
+              </select>
+          <div class="form-container">
+    <form id="registrationForm">
+
+      <label for="emergencyContact">Emergency Contact:</label>
+      <input type="text" id="emergencyContact" name="emergencyContact" required />
+
+      <label for="insurance">Health Insurance Number (if any):</label>
+      <input type="text" id="insurance" name="insurance" />
+    </form>
+    <p id="message"></p>
+  </div>
+    <div class="form-group">
+          <label for="address">Home Address</label>
+          <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+        </div>
+        <label for="birthCertificate">Birth Certificate (PDF or Image):</label>
+      <input type="file" id="birthCertificate" name="birthCertificate" accept=".pdf,.jpg,.jpeg,.png" required />
+        `;
+      } else if (level === 'primary') {
+        container.innerHTML = `
+        
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+         <label for="class">Select class</label>
+        <select>
+         <optgroup label="Primary">
+                <option value="P1">P1</option>
+                <option value="P2">P2</option>
+                <option value="P3">P3</option>
+                <option value="P4">P4</option>
+                <option value="P5">P5</option>
+                <option value="P6">P6</option>
+              </optgroup>
+              </select>
+          <label>Parent/Guardian ID</label>
+          <input type="text" name="parent_id">
+
+          <label>Previous Year Report image (Bulletin)</label>
+          <input type="text" name="bulletin">
+        <div class="form-container">
+    <form id="registrationForm">
+      <label for="parentName">Parent/Guardian Full Name:</label>
+      <input type="text" id="parentName" required>
+
+      <label for="previousSchool">Previous School (if any):</label>
+      <input type="text" id="previousSchool">
+      <label for="emergencyContact">Emergency Contact:</label>
+      <input type="text" id="emergencyContact" required>
+
+      <label for="insurance">Health Insurance Number (optional):</label>
+      <input type="text" id="insurance">
+       <div class="form-group">
+          <label for="address">Home Address</label>
+          <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+        </div>
+    </form>
+
+    <p id="message"></p>
+  </div>
+
+        `;
+        } else if (level === 'olevel') {
+        container.innerHTML = `
+        
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+<div class="form-container">
+
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="classLevel">Class Applying For:</label>
+      <select id="classLevel" required>
+        <option value="">-- Select Class --</option>
+        <option value="Senior 1">Senior 1</option>
+        <option value="Senior 2">Senior 2</option>
+        <option value="Senior 3">Senior 3</option>
+      </select>
+
+      <label for="parentName">Parent/Guardian Full Name:</label>
+      <input type="text" id="parentName" required />
+
+      <label for="contactNumber">Parent Contact Number:</label>
+      <input type="tel" id="contactNumber" required />
+
+      <label for="emergencyContact">Emergency Contact:</label>
+      <input type="text" id="emergencyContact" required />
+
+      <label for="insurance">Health Insurance Number (optional):</label>
+      <input type="text" id="insurance" />
+          <label>Previous School Report</label>
+          <input type="text" name="previous_school">
+          <label for="result" class="highlight-label">Report/Result Marks</label>
+          <body class="body2">
+            <input type="file" id="upload" accept="image/*" />
+            <div class="scanner-container" id="scannerContainer">
+              <div class="scan-line"></div>
+              <img id="photo" alt="Scanned Image" />
+            </div>
+            <label for="birthCertificate">Birth Certificate (PDF/JPG):</label>
+      <input type="file" id="birthCertificate" accept=".pdf,.jpg,.jpeg,.png" required />
+
+      <label for="reportCard">Latest Report Card (optional):</label>
+      <input type="file" id="reportCard" accept=".pdf,.jpg,.jpeg,.png" />
+              <div class="form-group">
+          <label for="address">Home Address</label>
+          <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+        </div>
+        `;
+      } else if (level === 'tvet') {
+        container.innerHTML = `
+        
+        <div class="form-group">
+  <label for="tvetLevel">Select Level</label>
+  <select id="tvetLevel" onchange="updateTvetRequirements()" required>
+    <option value="">-- Select Level --</option>
+    <option value="L3">L3</option>
+    <option value="L4">L4</option>
+    <option value="L5">L5</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="tvetTrade">Select Trade</label>
+  <select id="tvetTrade" onchange="updateTvetRequirements()" required>
+    <option value="">-- Select Trade --</option>
+    <option value="software">Software Development</option>
+    <option value="construction">Building and Construction</option>
+    <option value="survey">Land Survey</option>
+  </select>
+</div>
+
+<div id="tvetRequirementsContainer"></div>
+
+
+<div id="tvetRequirements"></div>
+              <div class="form-group">
+        </div>
+        `;
+      }
+    }
+    function updateTvetRequirements() {
+  const level = document.getElementById('tvetLevel').value;
+  const trade = document.getElementById('tvetTrade').value;
+  const container = document.getElementById('tvetRequirementsContainer');
+  container.innerHTML = '';
+
+  if (!level || !trade) return;
+
+  let requirements = '';
+
+  if (level === 'L3' && trade === 'software') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+       <div class="container">
+    <form>
+
+      <label for="id">National ID or Birth Certificate Number:</label>
+      <input type="text" id="id" name="id" required>
+
+      <label for="parentName">Parent/Guardian Name:</label>
+      <input type="text" id="parentName" name="parentName" required>
+
+      <label for="parentPhone">Parent Phone Number:</label>
+      <input type="tel" id="parentPhone" name="parentPhone" required>
+    </form>
+  </div>
+    `;
+  } else if (level === 'L4' && trade === 'software') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L4 - Software Development</h3>
+      <label>Student ID</label><input type="text" name="student_id" required />
+      <label>L3 Transcript</label><input type="file" name="l3_transcript" />
+      <label>Project Report</label><input type="file" name="project" />
+    `;
+  } else if (level === 'L5' && trade === 'software') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L5 - Software Development</h3>
+      <label>Student ID</label><input type="text" name="student_id" required />
+      <label>L4 Transcript</label><input type="file" name="l4_transcript" />
+      <label>Portfolio Link</label><input type="url" name="portfolio" />
+    `;
+  } else if (level === 'L3' && trade === 'construction') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L3 - Building & Construction</h3>
+      <label>Student ID</label><input type="text" name="student_id" required />
+      <label>Math & Physics Grades</label><input type="file" name="grades" />
+    `;
+  } else if (level === 'L4' && trade === 'construction') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L4 - Building & Construction</h3>
+      <label>L3 Transcript</label><input type="file" name="transcript" />
+      <label>Field Report</label><input type="file" name="field_report" />
+    `;
+  } else if (level === 'L5' && trade === 'construction') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L5 - Building & Construction</h3>
+      <label>L4 Transcript</label><input type="file" name="transcript" />
+      <label>Construction Project Photos</label><input type="file" name="photos" multiple />
+    `;
+  } else if (level === 'L3' && trade === 'survey') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L3 - Land Survey</h3>
+      <label>Student ID</label><input type="text" name="student_id" required />
+      <label>Math & Geography Grades</label><input type="file" name="grades" />
+    `;
+  } else if (level === 'L4' && trade === 'survey') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      <h3>Requirements for L4 - Land Survey</h3>
+      <label>L3 Transcript</label><input type="file" name="transcript" />
+      <label>Survey Field Report</label><input type="file" name="field_report" />
+    `;
+  } else if (level === 'L5' && trade === 'survey') {
+    requirements = `
+    
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>ssssssss
+      <h3>Requirements for L5 - Land Survey</h3>
+      <label>L4 Transcript</label><input type="file" name="transcript" />
+      <label>Topographic Map Sample</label><input type="file" name="map_sample" />
+    `;
+  }
+
+  container.innerHTML = requirements;
+}
+
+
+
+</script>
+
+</body>
+</html>

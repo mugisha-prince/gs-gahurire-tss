@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>School Fees Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e8f0fe, #ffffff);
+      padding: 20px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #2b4eff;
+    }
+
+    .header p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2b4eff;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #2b4eff;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2b4eff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1e3bd8;
+    }
+
+    #loading {
+      display: none;
+      text-align: center;
+      color: #2b4eff;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    #responseMessage {
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 8px;
+      background-color: #e6ffe6;
+      color: #006600;
+      border: 1px solid #b2d8b2;
+      text-align: center;
+    }
+
+    fieldset {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #2b4eff;
+      padding: 0 5px;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        padding: 20px;
+        width: 95%;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="school-logo.png" alt="School Logo" class="logo">
+      <h1>GS GAHURIRE TSS</h1>
+      <p>Secure School Fees Payment Portal</p>
+    </div>
+
+    <form id="paymentForm">
+      <fieldset>
+        <legend>Student Information</legend>
+        <label for="student_name">Student Name:</label>
+        <input type="text" id="student_name" name="student_name" required>
+
+        <label for="student_code">Student Code:</label>
+        <input type="text" id="student_code" name="student_code" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment Details</legend>
+        <label for="amount">Amount (RWF):</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="phone">Phone Number (MTN - 2507...):</label>
+        <input type="tel" id="phone" name="phone" pattern="2507[0-9]{8}" required>
+      </fieldset>
+
+      <button type="submit">Pay Now</button>
+
+      <div id="loading">Processing payment... Please wait.</div>
+      <div id="responseMessage"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const loading = document.getElementById('loading');
+      const message = document.getElementById('responseMessage');
+      loading.style.display = 'block';
+      message.innerText = '';
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch('/api/pay', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        message.innerText = result.message;
+      } catch (err) {
+        message.innerText = 'An error occurred. Please try again.';
+      } finally {
+        loading.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

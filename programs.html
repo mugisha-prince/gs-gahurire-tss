@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GS Gahurire TSS | Programs</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f7f9fb;
+            color: #333;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .programs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .program {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .program:hover {
+            transform: translateY(-5px);
+        }
+        .program img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .program-content {
+            padding: 20px;
+        }
+        .program-content h3 {
+            margin-top: 0;
+            color: #003366;
+        }
+        .program-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Our Programs</h1>
+    <p>Discover technical excellence at GS Gahurire TSS</p>
+    <button onclick="history.back()" style="border: none;position:absolute; background: none; left: 30px;top: 30px;">
+        <img src="btn.png" alt="Back" width="40" height="40" />
+        </button>
+</header>
+
+<section class="programs">
+
+    <div class="program">
+        <img src="sod.jfif">
+        <div class="program-content">
+            <h3>Software Development</h3>
+            <p>Our Software Development program prepares students with strong programming, database management, and application development skills for the digital economy.</p>
+        </div>
+    </div>
+
+    <div class="program">
+        <img src="bdc.jfif">
+        <div class="program-content">
+            <h3>Building and Construction</h3>
+            <p>Learn essential construction techniques, architectural drawing, and project management to create strong foundations for the future infrastructure of Rwanda and beyond.</p>
+        </div>
+    </div>
+
+    <div class="program">
+        <img src="lsv.jfif">
+        <div class="program-content">
+            <h3>Land Survey</h3>
+            <p>Master land measurement techniques, GPS mapping, and geospatial technology critical for planning, construction, and land development projects.</p>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>&copy; 2025 GS Gahurire TSS. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
