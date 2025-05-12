@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Products</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Our Products</h1><br>
+  </header>
+
+  <section class="product-list">
+    <div class="product" data-name="Pave Blocks" data-price="200">
+      <img src="images/pave.jpg" alt="Pave Blocks">
+      <h3>Pave Blocks</h3>
+      <p>Strong and durable for sidewalks.</p>
+      <button onclick="addToCart('Pave Blocks', 200)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Bricks" data-price="150">
+      <img src="images/bricks.jpg" alt="Bricks">
+      <h3>Clay Bricks</h3>
+      <p>High-quality bricks made by our students.</p>
+      <button onclick="addToCart('Bricks', 150)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Survey Map" data-price="500">
+      <img src="images/survey-map.jpg" alt="Survey Map">
+      <h3>Survey Map Project</h3>
+      <p>Real land surveying student project.</p>
+      <button onclick="addToCart('Survey Map', 500)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Student App" data-price="1000">
+      <img src="images/app.jpg" alt="Student App">
+      <h3>Student Mobile App</h3>
+      <p>Built by Software Development students.</p>
+      <button onclick="addToCart('Student App', 1000)">Add to Cart</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 School E-Commerce. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - EduMarket</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.fb-login-container {
+  display: flex;
+  background-color: white;
+  width: 80%;
+  max-width: 1000px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.left-section {
+  flex: 1;
+  background-color: #1877f2;
+  color: white;
+  padding: 60px 30px;
+}
+
+.logo {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.right-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form input {
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.login-form button {
+  padding: 12px;
+  background-color: #1877f2;
+  border: none;
+  color: white;
+  font-size: 17px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-form .forgot {
+  text-align: center;
+  display: block;
+  color: #1877f2;
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login-form hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.create-account {
+  background-color: #42b72a;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+  <div class="fb-login-container">
+    <div class="left-section">
+      <h1 class="logo">EduMarket</h1>
+      <p class="tagline">We sell construction materialsland survey service and software_project made
+        by our students.</p>
+    </div>
+    <div class="right-section">
+      <form action="dashboard.html" method="POST" class="login-form">
+        
+        <label for="username">Email or Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your email or username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+        <button type="submit">Log In</button>
+        <a href="#" class="forgot">Forgot password?</a>
+        <hr />
+        <a href="signup.html" class="create-account">Create New Account</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
