@@ -30,7 +30,7 @@ function clearCart() {
 if (document.getElementById("cart-items")) {
   showCart();
 }
-// Example of adding an item to the cart
+
 document.querySelectorAll('.product-card button').forEach(button => {
   button.addEventListener('click', function() {
     alert('Item added to the cart!');
